@@ -58,13 +58,13 @@ class gamesController {
     }
     plataforma(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const plat = yield database_1.default.query('SELECT * FROM plataforma');
+            const plat = yield database_1.default.query('SELECT * FROM plataforma GROUP BY ID_PLATAFORMA');
             res.json(plat);
         });
     }
     tipo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tipo = yield database_1.default.query('SELECT * FROM tipos');
+            const tipo = yield database_1.default.query('SELECT * FROM tipos GROUP BY ID_TIPO');
             res.json(tipo);
         });
     }

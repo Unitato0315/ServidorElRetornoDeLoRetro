@@ -40,11 +40,11 @@ class gamesController {
         
     }
     public async plataforma (req: Request, res: Response): Promise<void>{   
-        const plat = await pool.query('SELECT * FROM plataforma');
+        const plat = await pool.query('SELECT * FROM plataforma GROUP BY ID_PLATAFORMA');
         res.json(plat) 
     }
     public async tipo (req: Request, res: Response): Promise<void>{   
-        const tipo = await pool.query('SELECT * FROM tipos');
+        const tipo = await pool.query('SELECT * FROM tipos GROUP BY ID_TIPO');
         res.json(tipo)
     }
 

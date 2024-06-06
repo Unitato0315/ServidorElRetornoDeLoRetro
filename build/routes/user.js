@@ -20,8 +20,19 @@ class usuario {
         this.router.put('/usuario/:id', jwt_1.checkjwt, userControler_1.default.editUser);
         this.router.post('/pago', jwt_1.checkjwt, userControler_1.default.setPago);
         this.router.get('/pago/:id', jwt_1.checkjwt, userControler_1.default.getPedidos);
+        this.router.get('/pagos', jwt_1.checkjwt, (0, rol_1.soloadmin)(), userControler_1.default.getAllPedidos);
         this.router.get('/pago/productos/:id', jwt_1.checkjwt, userControler_1.default.getPedidoProductos);
         this.router.delete('/usuario/:id', jwt_1.checkjwt, (0, rol_1.soloadmin)(), userControler_1.default.deleteUser);
+        this.router.get('/tiposPagos', userControler_1.default.getTiposPagos);
+        this.router.get('/tiposEnvios', userControler_1.default.getTiposEnvios);
+        this.router.put('/cambiarEstado/:id', jwt_1.checkjwt, userControler_1.default.cambioEstadoEnvio);
+        this.router.put('/datosFacturacion/:id', jwt_1.checkjwt, userControler_1.default.cambiarDatosDeFacturacion);
+        this.router.post('/crearChat', jwt_1.checkjwt, userControler_1.default.crearChat);
+        this.router.get('/recuperarChat/:id', jwt_1.checkjwt, userControler_1.default.recuperarChat);
+        this.router.get('/recuperarAllChat', jwt_1.checkjwt, (0, rol_1.soloadmin)(), userControler_1.default.recuperarAllChat);
+        this.router.post('/crearMensaje/:id', jwt_1.checkjwt, userControler_1.default.crearMensaje);
+        this.router.get('/recuperarMensajes/:id', jwt_1.checkjwt, userControler_1.default.obtenerMensajes);
+        this.router.put('/cambiarEstadoMensaje/:id', jwt_1.checkjwt, userControler_1.default.marcarVisto);
     }
 }
 const Usuario = new usuario();
