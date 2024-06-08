@@ -99,19 +99,19 @@ class usuariosController {
                     const idChat = yield database_1.default.query('INSERT INTO chat (ID_USUARIO,ID_TIPO_CHAT,TITULO,ULTIMO_MENSAJE) VALUES (?,3,?,1)', [idUsuario, TITULO]);
                     const MENSAJE = "El pedido Nº " + respuesta.insertId + " a sido aceptado, podras comunicarte por este chat para obtener mas informacion";
                     yield database_1.default.query('INSERT INTO mensajeria (ID_CHAT,MENSAJE,ADMIN) VALUES (?,?,1)', [idChat.insertId, MENSAJE]);
-                    if (tipoEnvio != 2) {
-                        res.json({ success: true, message: 'Se ha realizado el pago correctamente', productos: [] });
+                    if (tipoEnvio == 2) {
+                        res.json({ success: true, message: 'Se ha realizado el pago correctamente', productos: [], idPedido: respuesta.insertId });
                     }
                     else {
-                        res.json({ success: true, message: 'Se ha aceptado el pedido', productos: [] });
+                        res.json({ success: true, message: 'Se ha aceptado el pedido', productos: [], idPedido: respuesta.insertId });
                     }
                 }
                 else {
-                    res.json({ success: false, message: productNoDisponibles.length + ' producto/s no estan disponibles', productos: productNoDisponibles });
+                    res.json({ success: false, message: productNoDisponibles.length + ' producto/s no estan disponibles', productos: productNoDisponibles, idPedido: 0 });
                 }
             }
             else {
-                res.json({ success: false, message: 'No se ha podido validar el pago', productos: [] });
+                res.json({ success: false, message: 'No se ha podido validar el pago', productos: [], idPedido: 0 });
             }
         });
     }
